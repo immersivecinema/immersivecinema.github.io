@@ -658,7 +658,7 @@
     }
 
     //CHANGED AGAIN
-    $(".rest-section").addClass("hide-mobile");
+    // $(".rest-section").addClass("hide-mobile");
 
 
 

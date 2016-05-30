@@ -262,6 +262,9 @@ strong {
   li, h2, p, &.super-large {
     letter-spacing: -3px;
     font-size: 60px;
+		/*changed*/
+		/*font-size: 1em;*/
+
   }
 }.accent-bg {
   .content-container {
@@ -1678,6 +1681,8 @@ body {
       overflow: auto !important;
     }
 
+
+
 		.vid{
 			width: 100%;
 		}
@@ -1944,3 +1949,40 @@ body {
 	width: 100px;
 
 }*/
+
+#logo{
+	text-align: center;
+}
+
+
+	@media(max-width: 1475px){
+		#main-text{
+			font-size: 0.7em;
+		}
+
+	}
+
+	@media(max-width: 1060px){
+		#main-text{
+			font-size: 0.6em;
+		}
+	}
+
+  @media (max-width: 992px) { /*tablet*/
+
+
+		#main-text{
+			font-size: 1.5em;
+		}
+
+
+	}
+
+
+
+	@media(max-width: 575px){
+		#main-text{
+			font-size: 0.80em;
+		}
+
+	}
