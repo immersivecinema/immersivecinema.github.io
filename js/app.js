@@ -19,7 +19,7 @@
         onePage: true
       }
   }
-  
+
   /* Utilities */
   var Util = window.Util = {
 	  showLoading: function(el) {
@@ -54,16 +54,16 @@
       showNotification: function(message) {
           clearTimeout(Util.removeNotificationMessageTimeout);
           $(".notification-message .text").text(message);
-      
+
           $(".notification-message").addClass("show");
-          
+
           setTimeout(function() {
               $(".notification-message").addClass("whiten");
               setTimeout(function() {
                   $(".notification-message").removeClass("whiten");
               }, 300);
           }, 300);
-          
+
           Util.removeNotificationMessageTimeout = setTimeout(function() {
               $(".notification-message").removeClass("show");
           }, 6000);
@@ -115,14 +115,14 @@
           }
       }
   }
-  
+
   var App = window.App = {
 	init: function() {
 	    $(".color").animate({"width": "100%"}, 10000);
 		App.generalBindings();
 	},
     generalBindings: function() {
-      
+
       //contact form
       $("body").on("click", "*[data-open='contact-form']", function(e){
         $(".contact-container").removeClass("fly-from-left");
@@ -168,19 +168,19 @@
           }
         });
       });
-      
-      
-      
 
-      
+
+
+
+
       $("body").on("click", ".page-resizer", function(e){
         e.preventDefault();
         $(this).toggleClass("active");
-        
+
         var $page = $(this).parents(".page-container");
-        
+
         if ($(this).hasClass("active")) {
-          
+
           $page.addClass("full-width-page no-menu-page");
           $(".side-container").addClass("reduced-side-container");
           setTimeout(function() {
@@ -190,10 +190,10 @@
                           $(".side-container").addClass("reduced-side-container");
                   }, 800);
           }, 800);
-          
-          
+
+
         } else {
-          
+
           $page.removeClass("full-width-page no-menu-page");
           App.initWaypoints();
           $(".side-container").removeClass("reduced-side-container");
@@ -204,19 +204,19 @@
 
 
       });
-      
+
       $("body").on("click", ".portfolio-item", function(e){
         $("a", this).click();
       });
-      
+
       //$('.tabcordion').tabcordion();
-      
+
       $("body").on("click", "nav li a", function(e){
         e.preventDefault();
         $elem = $($(this).attr("href"));
         if ($elem.length) {
           //window.location.hash = $(this).attr("href");
-          if (Util.environment.isMobile() && !Util.environment.isTablet()) 
+          if (Util.environment.isMobile() && !Util.environment.isTablet())
             $("body, html").animate({scrollTop: $elem.offset().top - 130}, Config.scrollDuration);
           else
             $("body, html").animate({scrollTop: $elem.offset().top}, Config.scrollDuration);
@@ -225,27 +225,46 @@
             window.location = "./" + $(this).attr("href");
           }
         }
-        
+
         //close popups, if any
         if ($.magnificPopup) {
           $.magnificPopup.close();
         }
-        
+
       });
-      
+
+      var toggled = false;
+
       $("body").on("click", ".menu-trigger-container", function(e){
+
+        console.log("click in general");
+
         e.preventDefault();
+
+        // this scrolls back up to the top
         if (Util.environment.isMobile()) {
           if (!$(".rest-section").hasClass("hide-mobile") && (Util.getScrollTop() > $(".rest-section").height())) {
             Util.scrollTo(0, 500);
+            console.log("1");
             return;
-          } else {
+          } else { // has to scroll back up to the top{
+            console.log("2");
             Util.scrollTo(0, 500);
           }
         }
-        $(".rest-section").toggleClass("hide-mobile");
+
+
+        // console.log("clicked shit");
+
+        if (toggled === false){ 
+          $(".rest-section").toggleClass("hide-mobile");
+            toggled = true;
+        }
+
+
       });
-      
+
+
       $(".side-container").hover(function() {
         if ($(this).hasClass("reduced-side-container") || $(this).hasClass("reduced-side-container-conditionally") || $(this).hasClass("reduced-side-container-conditionally-contact")) {
           $(this).addClass("temporarily-not-reduced");
@@ -310,7 +329,7 @@
         layoutMode: 'fitRows',
         transitionDuration: '0.7s'
       });
-      
+
       $('#filters').on( 'click', 'button', function() {
         var filterValue = $( this ).attr('data-filter');
         // use filterFn if matches value
@@ -328,12 +347,12 @@
     initItrSlider: function() {
             if (window.itrSliderInited != undefined)
                     return;
-              
+
             function do_slide(elem) {
               if ($("li", elem).length) {
                 var next = $("li.shown", elem).next();
                 $("li.shown", elem).removeClass("shown");
-                
+
                       if (next.length) {
                               next.addClass("shown");
                       } else {
@@ -357,7 +376,7 @@
                 }
               }, 1);
             }
-                  
+
             window.itrSliderInited = [];
             $(".itr-slider").each(function(i, elem) {
                 var duration = $(elem).attr("data-duration");
@@ -368,7 +387,7 @@
                 }, duration));
                 do_slide(elem);
             });
-            
+
     },
     initPopups: function() {
       $('*[data-rel="popup"]').each(function(i, elem) {
@@ -385,7 +404,7 @@
             history.pushState({popup: false, link: ""}, "", "./");
           }
         }
-        
+
         $(thisEl).magnificPopup({
           type: 'ajax',
           preloader: true,
@@ -393,9 +412,9 @@
           removalDelay: 600,
           mainClass: "scale-up slow-transitions"
         });
-        
+
       });
-      
+
       // Revert to a previously saved state
       window.addEventListener('popstate', function(event) {
         if (event.state == null) {
@@ -417,7 +436,7 @@
             },
             preloader: true,
             type: 'ajax'
-          
+
             // You may add options here, they're exactly the same as for $.fn.magnificPopup call
             // Note that some settings that rely on click event (like disableOn or midClick) will not work here
           }, 0);
@@ -446,11 +465,11 @@
       });
     },
     initWaypoints: function() {
-      
-            
+
+
       /* Destroy all waypoints */
       $(".waypointed, .waypointed2, .waypointed3, .waypointed-transition, .menu-waypointed").removeClass("waypointed").removeClass("waypointed2").removeClass("waypointed3").removeClass("menu-waypointed").waypoint('destroy');
-      
+
       /*
       $(".page-container:not(.menu-waypointed)").addClass("menu-waypointed").waypoint(function(direction, s) {
           var id = $(this).attr("id")
@@ -459,7 +478,7 @@
             $("*[data-target='"+id+"']").parent().addClass("active");
           }
       });
-      
+
       $(".home-page:not(.waypointed)").addClass("waypointed").waypoint(function(direction, s) {
           var id = $(this).attr("id")
           if (id != undefined) {
@@ -468,7 +487,7 @@
           }
       }, {offset: -1});
       */
-      
+
       $(".no-menu-page:not(.waypointed)").addClass("waypointed").waypoint(function(direction, s) {
             $(".side-container").addClass("reduced-side-container");
       }, {offset: $(window).height()}); //offset was 500
@@ -478,7 +497,7 @@
       $(".no-menu-page:not(.waypointed3)").addClass("waypointed2").waypoint(function(direction, s) {
             $(".side-container").addClass("reduced-side-container");
       }, {offset: -1*($(window).height()/2)});
-      
+
 
       $(".page-container:not(.waypointed,.no-menu-page)").addClass("waypointed").waypoint(function(direction, s) {
           $(".side-container").removeClass("reduced-side-container");
@@ -486,18 +505,18 @@
       $(".page-container:not(.waypointed2,.no-menu-page)").addClass("waypointed2").waypoint(function(direction, s) {
           $(".side-container").removeClass("reduced-side-container");
       }, {offset: 0});
-      
-      
+
+
     },
-    
+
     initStellar: function() {
       /* DESTROY Existing Stellar */
       try {
           $("*[data-stellar-ratio]").css("transform", "none");
           $(window).data('plugin_stellar').destroy();
       } catch(e) {}
-      
-      
+
+
       if (Util.environment.isMobile()) {
           enableParallax = Config.enableMobileParallax;
       } else {
@@ -511,15 +530,15 @@
         $(window).data('plugin_stellar').init();
       } catch(e) {}
       $.stellar.positionProperty.foobar = {
-        
+
           setPosition: function($el, x, startX, y, startY) {
               if ($el.hasClass("hparallax")) {
                 console.log(startY, y, $el.offset().top);
                 if ($el.offset().top < y) {
                   $el.css('background-position', (y - startY - $el.offset().top + $(window).height()/2) + 'px ' + (x - startX) + 'px ');
                 }
-                  
-                  
+
+
                   /*
                   //$el.css({opacity: 1/(y - startY)});
                   var transformX = (-1 * (y - startY));
@@ -540,45 +559,45 @@
                   (y - startY) + 'px, ' +
                   '0)');
               }
-            
+
           }
       }
-      
-      
-      
+
+
+
       /* INITIALIZE Stellar */
       jQuery(window).stellar( {
-  
+
           // Set scrolling to be in either one or both directions
           horizontalScrolling: false,
           verticalScrolling: true,
-  
+
           // Set the global alignment offsets
           horizontalOffset: 0,
           verticalOffset: 0,
-  
+
           // Refreshes parallax content on window load and resize
           responsive: false,
-  
+
           // Select which property is used to calculate scroll.
           // Choose 'scroll', 'position', 'margin' or 'transform',
           // or write your own 'scrollProperty' plugin.
           scrollProperty: 'scroll',
-  
+
           // Select which property is used to position elements.
           // Choose between 'position' or 'transform',
           // or write your own 'positionProperty' plugin.
           //positionProperty: 'transform',
           positionProperty: 'foobar',
-          
-  
+
+
           // Enable or disable the two types of parallax
           parallaxBackgrounds: true,
           parallaxElements: true,
-  
+
           // Hide parallax elements that move outside the viewport
           hideDistantElements: false,
-  
+
           // Customise how elements are shown and hidden
           hideElement: function($elem) { $elem.hide(); },
           showElement: function($elem) { $elem.show(); }
@@ -591,7 +610,7 @@
           $(".scroll-prompt").css("bottom", -5);
         }, 500);
       }, 800);
-      
+
     },
     loadDone: function() {
       setTimeout(function() {
@@ -607,9 +626,9 @@
 			App.initMaps();
           }, 400);
         });
-        
+
         $(".content-container").addClass("transition-rotate");
-        
+
       }, 500);
     }
   }
@@ -619,7 +638,7 @@
   })
   $(window).resize(function() {
     App.initStellar(); // for responsiveness
-    
+
     //($(".hide-on-low-height").offset().top - $(".hide-on-low-height").parent().offset().top + $(".hide-on-low-height").height())
     $(".hide-on-low-height").each(function() {
       if (($(this).offset().top - $(this).parent().offset().top + $(this).height()) > $(window).height()) {
@@ -628,20 +647,20 @@
         $(this).css({opacity: 1});
       }
     });
-    
+
     if (Util.environment.isMobile()) {
       if (!$(".rest-section").hasClass("height-done")) {
         //$(".rest-section").css({height: $(".rest-section").height()}).addClass("height-done");
       }
     }
     $(".rest-section").addClass("hide-mobile");
-    
+
     $(".page-container:not(.auto-height), .full-height-space").css({minHeight: $(window).height()});
     $(".content-container", ".page-container:not(.auto-height)").css({minHeight: $(window).height()});
-    
+
     $(".half-height-space").css({minHeight: $(window).height()/2});
     $(".quarter-height-space").css({minHeight: $(window).height()/4});
-    
+
     $(".go-out").each(function() {
       $(this).css({marginTop: -1*$(this).height()});
     });
@@ -651,7 +670,7 @@
     App.initIsotope();
     App.initPopups();
     App.initHelpers();
-    
+
     setTimeout(function() {
       $(".go-out").each(function() {
         $(this).css({marginTop: -1*$(this).height()});
@@ -660,28 +679,27 @@
 
   });
   $(window).trigger("resize");
-  
+
   $(window).load(function() {
     $(".color").stop().animate({"width": "100%"}, 500);
 
     setTimeout(function() {
       App.loadDone();
       App.initWaypoints(); //this is required after slider heights are set
-      
+
       if (hash = window.location.hash) {
         $elem = $("#"+hash.replace("#",""));
         if ($elem.length) {
-          if (Util.environment.isMobile() && !Util.environment.isTablet()) 
+          if (Util.environment.isMobile() && !Util.environment.isTablet())
             $("body, html").animate({scrollTop: $elem.offset().top - 130}, Config.scrollDuration);
           else
             $("body, html").animate({scrollTop: $elem.offset().top}, Config.scrollDuration);
         }
       }
-      
+
     }, 1);
     //App.loadDone();
   })
   App.init();
-  
-})(jQuery);
 
+})(jQuery);
