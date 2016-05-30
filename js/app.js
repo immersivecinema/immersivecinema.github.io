@@ -651,12 +651,16 @@
     if (Util.environment.isMobile()) {
       if (!$(".rest-section").hasClass("height-done")) {
 
-        // what
+        // CHANGED
         $(".rest-section").css({height: $(".rest-section").height()}).addClass("height-done");
       }
 
     }
-    $(".rest-section").addClass("hide-mobile");
+
+    //CHANGED
+    // $(".rest-section").addClass("hide-mobile");
+
+
 
     $(".page-container:not(.auto-height), .full-height-space").css({minHeight: $(window).height()});
     $(".content-container", ".page-container:not(.auto-height)").css({minHeight: $(window).height()});
