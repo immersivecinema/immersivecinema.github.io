@@ -1677,6 +1677,11 @@ body {
       z-index: 100000;
       overflow: auto !important;
     }
+
+		#join-form{
+			width: 100%;
+		}
+
     #search-form input[type='text'], #search-form input[type='search'] {
       font-size: 30px;
     }
@@ -1928,3 +1933,9 @@ body {
 
 
 } /* end body */
+
+/*#join-form{
+
+	width: 100px;
+
+}*/
