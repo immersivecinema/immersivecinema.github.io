@@ -1678,8 +1678,12 @@ body {
       overflow: auto !important;
     }
 
-		#join-form{
+		.vid{
 			width: 100%;
+		}
+
+		#join-form{
+			width: 9 0%;
 			height: 150%;
 		}
 
