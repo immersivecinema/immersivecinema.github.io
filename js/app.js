@@ -233,7 +233,7 @@
 
       });
 
-      var toggled = false;
+      // var toggled = false;
 
       $("body").on("click", ".menu-trigger-container", function(e){
 
@@ -256,10 +256,10 @@
 
         // console.log("clicked shit");
 
-        if (toggled === false){ 
+        // if (toggled === false){
           $(".rest-section").toggleClass("hide-mobile");
-            toggled = true;
-        }
+            // toggled = true;
+        // }
 
 
       });
@@ -650,8 +650,11 @@
 
     if (Util.environment.isMobile()) {
       if (!$(".rest-section").hasClass("height-done")) {
-        //$(".rest-section").css({height: $(".rest-section").height()}).addClass("height-done");
+
+        // what
+        $(".rest-section").css({height: $(".rest-section").height()}).addClass("height-done");
       }
+
     }
     $(".rest-section").addClass("hide-mobile");
 
