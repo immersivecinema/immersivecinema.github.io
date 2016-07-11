@@ -304,6 +304,8 @@ strong {
   li {
     .opacity(0);
     position: absolute;
+	width:100%;  /* By Chris */
+	text-align:center !important; /* By Chris */
     .transformer(translate3d(0px, 10px, 0));
     .transitioner(all 0.5s ease-in-out);
 
@@ -339,7 +341,7 @@ strong {
 
 body {
   display: block !important;
-  background: @grayContainerColor;
+  background: black;  /* original:@grayContainerColor by Chris */
   font-family: 'Josefin Sans', sans-serif, Arial;
   font-size: 18px;
   color: @typoColor;
@@ -819,7 +821,7 @@ body {
         .brand-container {
           display: table;
           height: 100%;
-          width: 185px;
+          width: 100%;		/*original 185px by Chris */
           /*background: @accentColor; CHANGE*/
 					/*.opacity(0.63);*/
 
@@ -1716,6 +1718,11 @@ body {
 	.menu-trigger-container {
 		display: table !important;
 	}
+	
+	.rest-section{
+		display:hidden;
+	}
+	
     .full-height-space.fixed {
       position: absolute;
     }
@@ -1968,7 +1975,7 @@ body {
 		}
 	}
 
-  @media (max-width: 992px) { /*tablet*/
+  @media (max-width: 990px) { /*tablet*/
 
 
 		#main-text{
